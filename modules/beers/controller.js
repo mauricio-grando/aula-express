@@ -55,7 +55,7 @@ var Controller = {
 				console.log("Get: ", data);
 				msg = data;
 			}
-			res.json(msg);
+			res.render('beer', { title: 'Exibindo uma cerveja', beer: data });
 		});
 	},
 	update: function(req, res) {

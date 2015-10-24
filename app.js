@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var beers = require('./modules/beers/routes');
+var beer = require('./modules/beers/routes');
 
 var API = {};
 API.beers = require('./modules/beers/routes/api')
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/beers', beers);
+app.use('/beer', beer);
 
 //API json
 app.use('/api/beers', API.beers);
