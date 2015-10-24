@@ -4,13 +4,7 @@ var Model = require('./model');
 var msg = "";
 var Controller = {
 	create: function(req, res) {
-	var dados = {
-			name: 'Skol',
-			description: 'Mijo de rato',
-			alcohol: 4.5,
-			price: 3.0,
-			category: 'pilsen'
-		};
+		var dados = req.body;
 
 		var model = new Model(dados);
 
@@ -20,7 +14,7 @@ var Controller = {
 				msg = "Erro: " + err;
 			} else {
 				console.log("Cerveja inserida.", data);
-				msg = "Cerveja inserida. " + data;
+				msg = data;
 			}
 			res.json(msg);
 		});
@@ -38,14 +32,23 @@ var Controller = {
 			res.json(msg);
 		});
 	},
+	get: function(req, res) {
+		var query = {_id: req.params.id};
+		Model.findOne(query, function(err, data) {
+			if(err) {
+				console.log("Erro: ", err);
+				msg = err;
+			} else {
+				console.log("Get: ", data);
+				msg = data;
+			}
+			res.json(msg);
+		});
+	},
 	update: function(req, res) {
-		var query = {name: /Skol/i};
-		var mod = {
-			name: 'Brahma',
-			alcohol: 4,
-			price: 6,
-			category: 'pilsen'
-		};
+		var query = {_id: req.params.id};
+		var mod = req.body;
+		
 		Model.update(query, mod, function(err, data) {
 			if(err) {
 				console.log("Erro: ", err);
