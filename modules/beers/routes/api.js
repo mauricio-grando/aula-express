@@ -21,4 +21,8 @@ router.put('/:id', function(req, res, next) {
   Controller.update(req, res);
 });
 
+router.delete('/:id', function(req, res, next) {
+  Controller.delete(req, res);
+});
+
 module.exports = router;
