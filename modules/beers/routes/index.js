@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 
 /* GET home page. */
 router.get('/:id', function(req, res, next) {
-  Controller.get(req, res);
+  Controller.see(req, res);
 });
 
 module.exports = router;

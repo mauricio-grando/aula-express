@@ -55,9 +55,23 @@ var Controller = {
 				console.log("Get: ", data);
 				msg = data;
 			}
+			res.json(msg);
+		});
+	},
+	see: function(req, res) {
+		var query = {_id: req.params.id};
+		Model.findOne(query, function(err, data) {
+			if(err) {
+				console.log("Erro: ", err);
+				msg = err;
+			} else {
+				console.log("Get: ", data);
+				msg = data;
+			}
 			res.render('beer', { title: 'Exibindo uma cerveja', beer: data });
 		});
 	},
+	
 	update: function(req, res) {
 		var query = {_id: req.params.id};
 		var mod = req.body;
